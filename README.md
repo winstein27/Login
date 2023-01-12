@@ -6,7 +6,7 @@ The software present a login form, validates user inputs and simulates user logg
 
 The project was a challenge, to test if react concepts were learnt. I wrote all the code by myself, including styles.
 
-The project was deployed to Vercel, available at:
+The project was deployed to Vercel, available at: https://login-winstein27.vercel.app/
 
 ## Study objectives
 
