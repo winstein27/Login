@@ -1,0 +1,16 @@
+.header {
+    background: #41646e;
+    padding: 8px 0;
+    text-align: right;
+    height: 34px;
+}
+
+.header button {
+    background: #e4e1b0;
+    border: 0;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 6px;
+}
