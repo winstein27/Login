@@ -10,10 +10,14 @@ function App() {
         setIsLogged(false);
     };
 
+    const loginHandler = () => {
+        setIsLogged(true);
+    };
+
     return (
         <>
             <Header userIsLogged={isLogged} onLogout={logoutHandler} />
-            <Login />
+            {!isLogged && <Login onLogin={loginHandler} />}
         </>
     );
 }
