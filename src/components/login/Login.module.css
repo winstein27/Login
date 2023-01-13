@@ -19,6 +19,11 @@
     font-size: 20px;
 }
 
+.form-group .invalid {
+    background: #b93e3e8c;
+    border: 1px solid red;
+}
+
 .form button {
     background: #41646e;
     color: white;
@@ -29,4 +34,8 @@
     font-size: 20px;
     display: block;
     margin: auto;
+}
+
+.form button:disabled {
+    background: lightslategray;
 }

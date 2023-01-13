@@ -6,30 +6,47 @@ import Card from '../UI/Card';
 
 const Login = (props) => {
     const [inputedEmail, setInputedEmail] = useState('');
-    const [validEmail, setValidEmail] = useState(false);
+    const [emailIsValid, setEmailIsValid] = useState();
     const [inputedPassword, setInputedPassword] = useState('');
-    const [validPassword, setValidPassword] = useState(false);
+    const [passwordIsValid, setPasswordIsValid] = useState();
+    const [formIsValid, setFormIsValid] = useState(false);
 
-    const emailHandler = (event) => {
-        setInputedEmail(event.target.value);
+    const emailChangeHandler = (event) => {
+        const email = event.target.value;
+        setInputedEmail(email);
 
-        if (inputedEmail.includes('@') && inputedEmail.includes('.')) {
-            setValidEmail(true);
-        }
+        setFormIsValid(
+            email.includes('@') &&
+                email.includes('.') &&
+                inputedPassword.trim().length > 7
+        );
     };
 
-    const passwordHandler = (event) => {
-        setInputedPassword(event.target.value);
+    const emailValidationHandler = () => {
+        setEmailIsValid(
+            inputedEmail.includes('@') && inputedEmail.includes('.')
+        );
+    };
 
-        if (inputedPassword.trim().length > 7) {
-            setValidPassword(true);
-        }
+    const passwordChangeHandler = (event) => {
+        const password = event.target.value;
+        setInputedPassword(password);
+
+        setFormIsValid(
+            inputedEmail.includes('@') &&
+                inputedEmail.includes('.') &&
+                password.trim().length > 7
+        );
+    };
+
+    const passwordValidationHandler = () => {
+        setPasswordIsValid(inputedPassword.trim().length > 7);
     };
 
     const loginHandler = (event) => {
         event.preventDefault();
 
-        if (validEmail && validPassword) {
+        if (formIsValid) {
             props.onLogin();
         }
     };
@@ -44,7 +61,9 @@ const Login = (props) => {
                         type="email"
                         maxLength="80"
                         value={inputedEmail}
-                        onChange={emailHandler}
+                        onChange={emailChangeHandler}
+                        onBlur={emailValidationHandler}
+                        className={emailIsValid === false ? styles.invalid : ''}
                     />
                 </div>
                 <div className={styles['form-group']}>
@@ -53,10 +72,16 @@ const Login = (props) => {
                         name="password"
                         type="password"
                         value={inputedPassword}
-                        onChange={passwordHandler}
+                        onChange={passwordChangeHandler}
+                        onBlur={passwordValidationHandler}
+                        className={
+                            passwordIsValid === false ? styles.invalid : ''
+                        }
                     />
                 </div>
-                <button type="submit">Send</button>
+                <button type="submit" disabled={!formIsValid}>
+                    Send
+                </button>
             </form>
         </Card>
     );
