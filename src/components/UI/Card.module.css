@@ -1,0 +1,8 @@
+.card {
+    width: fit-content;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px 1px #41646e;
+}
